@@ -5,7 +5,7 @@ import requests
 import csv
 
 # Currently all data is in here, but this isn't meant to be run as a __main__
-api_key = {'api_key': '4fc5d1d3-817b-4a0e-b86d-ad6436bb9391'}
+api_key = {'api_key': 'INSERT_API_KEY'}
 headers = ['champ', 'team', 'cs_diff_per_min_z_to_10', 'cs_diff_per_min_10_to_20', 'cs_diff_per_min_20_to_30',
            'cs_diff_per_min_30_to_e', 'role', 'lane', 'did_win', 'item0', 'item1', 'item2', 'item3', 'item4', 'item5',
            'kills', 'deaths', 'assists', 'doubleKills', 'tripleKills', 'quadraKills', 'pentaKills', 'unrealKills',
