@@ -16,9 +16,10 @@ from lol_api_request import make_api_call
 # Config
 #
 RATE_LIMIT = 6
+SLEEP_TIMER = 15
 
 # Change below line
-api_key_list = ['INSERT_KEY']
+api_key_list = ['INSERT_API_KEY']
 num_apis = len(api_key_list)
 
 # Choose 5.14 if your Ben
@@ -37,7 +38,8 @@ input_files = []
 for folder in resource_folders:
     files_in_folder = [f for f in listdir(folder) if isfile(join(folder, f))]
     for json_file in files_in_folder:
-        if json_file == 'NA.JSON':
+        print json_file
+        if json_file == 'NA.json':
             input_files.append(folder + '/' + json_file)
 
 # Create output
@@ -73,8 +75,8 @@ with open(output_file, 'w') as f:
 
                 if request_count == RATE_LIMIT:
                     sys.stdout.write(
-                        '[' + strftime('%H:%M:%S') + '] Rate limit reached, now sleeping for 15 seconds...')
-                    sleep(15)
+                        '[' + strftime('%H:%M:%S') + '] Rate limit reached, now sleeping for' + str(SLEEP_TIMER) + ' seconds...')
+                    sleep(SLEEP_TIMER)
                     request_count = 0
                     print 'Resuming...(calls made: ' + str(total_calls_made) + ')'
 
