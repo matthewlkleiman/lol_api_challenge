@@ -14,7 +14,9 @@ from lol_api_request import make_api_call
 
 # Config
 RATE_LIMIT = 6
-api_key_list = ['4fc5d1d3-817b-4a0e-b86d-ad6436bb9391', '1c6e481d-4bfe-472a-ae31-b0c211b2cf2d']
+
+# Change below line
+api_key_list = ['YOUR_API_KEY_HERE']
 num_apis = len(api_key_list)
 
 resource_folders = ['AP_ITEM_DATASET/5.11/NORMAL_5x5', 'AP_ITEM_DATASET/5.11/RANKED_SOLO',
@@ -33,7 +35,8 @@ input_files = []
 for folder in resource_folders:
     files_in_folder = [f for f in listdir(folder) if isfile(join(folder, f))]
     for json_file in files_in_folder:
-        input_files.append(folder + '/' + json_file)
+        if json_file == 'NA.JSON':
+            input_files.append(folder + '/' + json_file)
 
 # Create output
 with open(output_file, 'w') as f:
