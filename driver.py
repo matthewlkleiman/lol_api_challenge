@@ -12,15 +12,17 @@ from os.path import isfile, join
 from re import search
 from lol_api_request import make_api_call
 
+#
 # Config
+#
 RATE_LIMIT = 6
 
 # Change below line
-api_key_list = ['YOUR_API_KEY_HERE']
+api_key_list = ['INSERT_KEY']
 num_apis = len(api_key_list)
 
-resource_folders = ['AP_ITEM_DATASET/5.11/NORMAL_5x5', 'AP_ITEM_DATASET/5.11/RANKED_SOLO',
-                    'AP_ITEM_DATASET/5.14/NORMAL_5x5', 'AP_ITEM_DATASET/5.14/RANKED_SOLO']
+# Choose 5.14 if your Ben
+resource_folders = ['AP_ITEM_DATASET/5.11/NORMAL_5x5', 'AP_ITEM_DATASET/5.11/RANKED_SOLO']
 
 output_file = 'output/game_info.csv'
 headers = ['patch_num', 'game_mode', 'match_id', 'match_duration', 'champ', 'team', 'creep_per_min_z_to_10',
@@ -63,6 +65,7 @@ with open(output_file, 'w') as f:
                 while game == 429:
                     print '[' + strftime('%H:%M:%S') + '] Error, api call failed. Total calls made: ' + str(
                         total_calls_made)
+                    sleep(1)
                     game = make_api_call(game_url, {'api_key': api_key_list[total_calls_made % num_apis]})
 
                 request_count += 1
