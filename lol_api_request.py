@@ -53,7 +53,6 @@ def make_api_call(url, params_dict):
                 rows.append(row)
                 r.close()
         else:
-            print r.headers
             r.close()
             print 'Bad request code: ' + str(r.status_code)
             print url

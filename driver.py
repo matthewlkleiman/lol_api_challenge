@@ -13,7 +13,9 @@ from re import search
 from lol_api_request import make_api_call
 
 # Config
-RATE_LIMIT = 5
+RATE_LIMIT = 6
+api_key_list = ['4fc5d1d3-817b-4a0e-b86d-ad6436bb9391', '1c6e481d-4bfe-472a-ae31-b0c211b2cf2d']
+num_apis = len(api_key_list)
 
 resource_folders = ['AP_ITEM_DATASET/5.11/NORMAL_5x5', 'AP_ITEM_DATASET/5.11/RANKED_SOLO',
                     'AP_ITEM_DATASET/5.14/NORMAL_5x5', 'AP_ITEM_DATASET/5.14/RANKED_SOLO']
@@ -54,12 +56,11 @@ with open(output_file, 'w') as f:
             for game_id in decoded_json:
                 game_url = 'https://' + server + '.api.pvp.net/api/lol/' + server + '/v2.2/match/' + str(game_id)
                 sleep(1)
-                game = make_api_call(game_url, {'api_key': 'INSERT API KEY'})
+                game = make_api_call(game_url, {'api_key': api_key_list[total_calls_made % num_apis]})
                 while game == 429:
                     print '[' + strftime('%H:%M:%S') + '] Error, api call failed. Total calls made: ' + str(
                         total_calls_made)
-                    status_code, game = make_api_call(game_url, {'api_key': 'INSERT API KEY'})
-                    exit()
+                    game = make_api_call(game_url, {'api_key': api_key_list[total_calls_made % num_apis]})
 
                 request_count += 1
                 total_calls_made += 1
