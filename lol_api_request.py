@@ -21,8 +21,9 @@ def make_api_call(url, params_dict):
                 except ValueError:
                     print 'Failed to read stats'
                 except KeyError:
-                    print 'Failed reading summoner ' + str(summoner['participantId']) + str(game_json['matchId'])
-                    print creep_per_min_deltas
+                    creep_per_min_deltas = {}
+                    print 'Failed reading creep info for summoner ' + str(
+                        summoner['participantId']) + ' in match: ' + str(game_json['matchId'])
 
                 try:
                     row['role'] = str(summoner['timeline']['role'])
@@ -56,7 +57,6 @@ def make_api_call(url, params_dict):
             r.close()
             print 'Bad request code: ' + str(r.status_code)
             print url
-            return r.status_code
     except requests.exceptions.ConnectionError:
         print 'Connection to ' + url + ' failed'
-    return rows
+    return r.status_code, rows
