@@ -44,6 +44,9 @@ def make_api_call(url, params_dict):
                                'quadraKills': stats['quadraKills'], 'pentaKills': stats['pentaKills'],
                                'unrealKills': stats['unrealKills']}
                 kda = {'kills': stats['kills'], 'deaths': stats['deaths'], 'assists': stats['assists']}
+                row['magic_damage_dealt'] = stats['magicDamageDealt']
+                row['magic_damage_dealt_to_champions'] = stats['magicDamageDealtToChampions']
+                row['total_damage_dealt'] = stats['totalDamageDealt']
                 row['total_heal'] = stats['totalHeal']
                 gold = {'gold_earned': stats['goldEarned'], 'gold_spent': stats['goldSpent']}
                 row['crowd_control_dealt_time'] = stats['totalTimeCrowdControlDealt']
